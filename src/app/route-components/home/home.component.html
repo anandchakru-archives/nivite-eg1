@@ -1,0 +1,93 @@
+<div class="container text-center">
+  <ng-container *ngIf="loaded; else loading">
+    <ng-container *ngIf="invite; else error">
+      <div class="jumbotron bg-transparent m-0">
+        <h1 class="text-primary display-3 title">
+          {{invite.title}}
+        </h1>
+        <div class="lead text-muted small">{{invite.shortMsg}}</div>
+        <div class="text-success longMsg" markdown [data]="invite.longMsg">{{invite.longMsg}}</div>
+      </div>
+      <neg-loading [hidden]="carousalReady"></neg-loading>
+      <neg-carouseli [hidden]="!carousalReady" [photos]="invite.photos" [slideInterval]="4000"
+        (loaded)="onCarouseliReady($event)">
+      </neg-carouseli>
+      <div class="row my-5">
+        <div class="col-12 col-md-6 my-2">
+          <div class="card shadow-lg">
+            <div class="card-header bg-info">
+              Venue
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{invite.addrTitle}}</h5>
+              <p class="card-text">{{invite.addrText}}</p>
+              <button class="btn btn-primary">Navigate</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 my-2">
+          <div class="card shadow-lg">
+            <div class="card-header bg-info">
+              Time
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"></h5>
+              <p class="card-text">
+                <span>{{invite.timeFrom | date : 'short'}}</span>
+                <span class="d-block d-md-inline text-muted" *ngIf="invite.timeTo"> -to- </span>
+                <span *ngIf="invite.timeTo"> {{invite.timeTo | date : 'short'}}</span></p>
+              <button class="btn btn-primary">Calendar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row my-5">
+        <div class="col">
+          <div class="card shadow-lg"
+            *ngIf="!(invite?.customerInvite?.role==='HOST' || invite?.customerInvite?.role==='COLLAB'); else hostorcollab">
+            <div class="card-header bg-info">
+              RSVP
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"></h5>
+              <p class="card-text">Respond to the invitation.</p>
+              <div class="btn-group" role="group" aria-label="RSVP buttons">
+                <button class="btn btn-primary" [disabled]="invite?.customerInvite?.rsvp==='Y'">Yes</button>
+                <button class="btn btn-warning">Maybe</button>
+                <button class="btn btn-danger">No</button>
+              </div>
+            </div>
+          </div>
+          <ng-template #hostorcollab>
+            <div class="card shadow-lg">
+              <div class="card-header bg-info">
+                RSVP
+              </div>
+              <div class="card-body">
+                <h5 class="card-title"></h5>
+                <p class="card-text">Hosts need not RSVP.</p>
+                <div class="btn-group" role="group" aria-label="RSVP buttons">
+                  <button class="btn btn-primary" disabled>Yes</button>
+                  <button class="btn btn-warning" disabled>Maybe</button>
+                  <button class="btn btn-danger" disabled>No</button>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #error>
+      <div class="p-5 mt-5 shadow">
+        <h1>Apologies, we could <strong>NOT</strong> find your invite.</h1>
+        <small class="text-danger">Redirecting to <a [href]="redirectUrl">home</a> in <strong>{{counter}}</strong>
+        </small>
+      </div>
+    </ng-template>
+  </ng-container>
+  <ng-template #loading>
+    <div class="h-100 d-flex justify-content-center align-items-center spinner-overlay">
+      <app-atom-spinner [animationDuration]="1000" [size]="150" [color]="'#8133da'"></app-atom-spinner>
+    </div>
+  </ng-template>
+</div>

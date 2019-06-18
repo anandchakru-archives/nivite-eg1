@@ -1,1 +1,72 @@
 /* You can add global styles to this file, and also import other style files */
+@import "variables";
+@import "~bootstrap/scss/bootstrap.scss";
+
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Baloo|Bevan&display=swap');
+
+.bg {
+  background: url('assets/bg.png');
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.2;
+  z-index: -9000;
+}
+
+.title {
+  font-family: 'Libre Baskerville, Georgia, serif';
+  font-weight: bold;
+}
+
+.longMsg {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-style: italic;
+}
+
+.shotMsg {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-style: italic;
+}
+
+.spinner-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+@media (max-width: 575.98px) {
+
+  //Manage Display Headers for Mobile Devices
+  .display-1 {
+    font-size: 3rem;
+    font-weight: 300;
+    line-height: 1.0;
+  }
+
+  .display-2 {
+    font-size: 2.75rem;
+    font-weight: 300;
+    line-height: 1.0;
+  }
+
+  .display-3 {
+    font-size: 2.25rem;
+    font-weight: 300;
+    line-height: 1.0;
+  }
+
+  .display-4 {
+    font-size: 1.75rem;
+    font-weight: 300;
+    line-height: 1.0;
+  }
+}

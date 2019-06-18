@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/nivite-eg1",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -118,6 +118,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "nivite-eg1"
 }

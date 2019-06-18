@@ -1,0 +1,26 @@
+<div class="bd-example" *ngIf="photos">
+  <div class="carousel slide carousel-fade" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li [attr.data-slide-to]="photoIndx" [ngClass]="photoIndx===carouselCurrentSlide?'active':''"
+        *ngFor="let photo of photos;let photoIndx= index;" (click)="carouselGoto($event, photoIndx)"></li>
+    </ol>
+    <div class="carousel-inner rounded shadow-lg">
+      <div class="carousel-item" [ngClass]="photoIndx===carouselCurrentSlide?'active':''"
+        *ngFor="let photo of photos;let photoIndx= index;">
+        <img [src]="photo.url" class="d-block w-100" [alt]="photo.altText" (load)="imgLoaded($event, photoIndx)">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{photo.title}}</h5>
+          <p>{{photo.description}}</p>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev pointer" role="button" data-slide="prev" (click)="carouselPrevious($event)">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next pointer" role="button" data-slide="next" (click)="carouselNext($event)">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>

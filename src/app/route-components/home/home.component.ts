@@ -24,10 +24,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.paramMap.pipe(takeUntil(this.uns)).subscribe(params => {
-      const invitePreviewKey = params.get('invitePreviewKey'); // Required - 18054132c5d13
-      const customerInviteOid = params.get('customerInviteOid'); // Optional - 180544d732b47
-      this.http.get('http://localhost:8080/repo/invite/search/byInvitePreviewKey?invitePreviewKey='
-        + invitePreviewKey + '&customerInviteOid=' + customerInviteOid + '&projection=preview').subscribe(invite => {
+      const iOid = params.get('iOid'); // Required - 18054132c5d13
+      const ciOid = params.get('ciOid'); // Optional - 180544d732b47 (customerInviteOid)
+      this.http.get('http://localhost:8080/repo/invite/search/byOid?oid='
+        + iOid + '&ciOid=' + ciOid + '&projection=preview').subscribe(invite => {
           this.invite = invite;
           this.setLoaded();
         }, (error => {
@@ -58,5 +58,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   onCarouseliReady(event) {
     this.carousalReady = true;
+  }
+  navigate() {
+    window.open(this.invite.addrUrl, '_blank');
   }
 }

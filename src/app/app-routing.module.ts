@@ -5,8 +5,8 @@ import { HomeComponent } from './route-components/home/home.component';
 import { PnfComponent } from './route-components/pnf/pnf.component';
 
 const routes: Routes = [
-  { path: ':invitePreviewKey', component: HomeComponent },
-  { path: ':invitePreviewKey/:customerInviteOid', component: HomeComponent },
+  { path: ':iOid', component: HomeComponent },
+  { path: ':iOid/:ciOid', component: HomeComponent },
   { path: '**', component: PnfComponent }
 ];
 

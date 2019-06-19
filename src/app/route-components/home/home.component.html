@@ -21,7 +21,7 @@
             <div class="card-body">
               <h5 class="card-title">{{invite.addrTitle}}</h5>
               <p class="card-text">{{invite.addrText}}</p>
-              <button class="btn btn-primary">Navigate</button>
+              <button class="btn btn-primary" (click)="navigate()">Navigate</button>
             </div>
           </div>
         </div>
@@ -50,7 +50,9 @@
             </div>
             <div class="card-body">
               <h5 class="card-title"></h5>
-              <p class="card-text">Respond to the invitation.</p>
+              <div class="card-text">Respond to the invitation.</div>
+              <div class="card-text small text-muted my-2" *ngIf="invite?.customerInvite">as
+                {{invite.customerInvite.customer?.email}}</div>
               <div class="btn-group" role="group" aria-label="RSVP buttons">
                 <button class="btn btn-primary" [disabled]="invite?.customerInvite?.rsvp==='Y'">Yes</button>
                 <button class="btn btn-warning">Maybe</button>
